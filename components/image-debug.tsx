@@ -14,7 +14,7 @@ export default function ImageDebug() {
     // Obtener un anime de ejemplo para debug
     const fetchAnime = async () => {
       try {
-        const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
         console.log('🔍 Haciendo petición a:', `${backendUrl}/anime/search?q=naruto&limit=1`)
         
         const response = await fetch(`${backendUrl}/anime/search?q=naruto&limit=1`)

@@ -12,7 +12,7 @@ interface AnimePageProps {
 export async function generateMetadata({ params }: AnimePageProps): Promise<Metadata> {
   const { id } = await params;
   try {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api'
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
     const response = await fetch(`${backendUrl}/anime/${id}`)
     const animeData = await response.json()
 
