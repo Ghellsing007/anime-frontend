@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { API_URL } from '@/lib/config'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
 
@@ -7,7 +8,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const backendUrl = `${BACKEND_URL}/forums/topics/${params.id}`
+    const backendUrl = `${API_URL}/forums/topics/${params.id}`
     
     const response = await fetch(backendUrl, {
       method: 'GET',
@@ -34,7 +35,7 @@ export async function PUT(
 ) {
   try {
     const body = await request.json()
-    const backendUrl = `${BACKEND_URL}/forums/topics/${params.id}`
+    const backendUrl = `${API_URL}/forums/topics/${params.id}`
     
     const response = await fetch(backendUrl, {
       method: 'PUT',
@@ -62,7 +63,7 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const backendUrl = `${BACKEND_URL}/forums/topics/${params.id}`
+    const backendUrl = `${API_URL}/forums/topics/${params.id}`
     
     const response = await fetch(backendUrl, {
       method: 'DELETE',

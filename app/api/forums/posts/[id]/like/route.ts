@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { API_URL } from '@/lib/config'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
 
@@ -7,7 +8,7 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   try {
-    const backendUrl = `${BACKEND_URL}/forums/posts/${params.id}/like`
+    const backendUrl = `${API_URL}/forums/posts/${params.id}/like`
     
     const response = await fetch(backendUrl, {
       method: 'PUT',

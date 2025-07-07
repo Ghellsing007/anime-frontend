@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import AnimeDetails from "@/components/anime-details"
 import CDNLoading from "@/components/cdn-loading"
 import { SITE_NAME } from "../../../lib/siteConfig"
+import { API_URL } from '@/lib/config'
 
 interface AnimePageProps {
   params: {
@@ -12,7 +13,7 @@ interface AnimePageProps {
 export async function generateMetadata({ params }: AnimePageProps): Promise<Metadata> {
   const { id } = await params;
   try {
-    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+    const backendUrl = API_URL;
     const response = await fetch(`${backendUrl}/anime/${id}`)
     const animeData = await response.json()
 

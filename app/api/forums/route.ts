@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { API_URL } from '@/lib/config'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
 
 export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.url)
-    const backendUrl = `${BACKEND_URL}/forums${url.search}`
+    const backendUrl = `${API_URL}/forums${url.search}`
     
     const response = await fetch(backendUrl, {
       method: 'GET',
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const backendUrl = `${BACKEND_URL}/forums`
+    const backendUrl = `${API_URL}/forums`
     
     const response = await fetch(backendUrl, {
       method: 'POST',

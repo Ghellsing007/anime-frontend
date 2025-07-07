@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { getHeroImage, getCardImage } from "../lib/imageUtils"
+import { API_URL } from '@/lib/config'
 
 interface AnimeDetailsProps {
   id: string
@@ -21,6 +22,8 @@ export default function AnimeDetails({ id }: AnimeDetailsProps) {
   const [isFavorite, setIsFavorite] = useState(false)
   const [isBookmarked, setIsBookmarked] = useState(false)
 
+  const backendUrl = API_URL
+
   useEffect(() => {
     const fetchAnimeDetails = async () => {
       try {
@@ -28,7 +31,6 @@ export default function AnimeDetails({ id }: AnimeDetailsProps) {
         // Añadimos un pequeño retraso para respetar los límites de la API
         await new Promise((resolve) => setTimeout(resolve, 1000))
 
-        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
         const response = await fetch(`${backendUrl}/anime/${id}`)
 
         if (!response.ok) {

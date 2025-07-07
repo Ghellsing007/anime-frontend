@@ -5,6 +5,7 @@ import Image from "next/image"
 import api from "../lib/api"
 import { debugImageUrls, getHeroImage, getCardImage, getThumbnailImage } from "../lib/imageUtils"
 import type { AnimeImages } from "../lib/types"
+import { API_URL } from '@/lib/config'
 
 export default function ImageDebug() {
   const [anime, setAnime] = useState<any>(null)
@@ -14,7 +15,7 @@ export default function ImageDebug() {
     // Obtener un anime de ejemplo para debug
     const fetchAnime = async () => {
       try {
-        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+        const backendUrl = API_URL;
         console.log('🔍 Haciendo petición a:', `${backendUrl}/anime/search?q=naruto&limit=1`)
         
         const response = await fetch(`${backendUrl}/anime/search?q=naruto&limit=1`)

@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { API_URL } from '@/lib/config'
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000'
 
 export async function GET(request: NextRequest) {
   try {
     const authorization = request.headers.get('Authorization')
-    const backendUrl = `${BACKEND_URL}/api/auth/me`
+    const backendUrl = `${API_URL}/auth/me`
     
     const response = await fetch(backendUrl, {
       method: 'GET',
