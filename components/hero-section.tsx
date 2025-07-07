@@ -169,14 +169,14 @@ export default function HeroSection() {
           <p className="text-sm sm:text-base lg:text-lg mb-4 lg:mb-6 max-w-full lg:max-w-2xl line-clamp-4 lg:line-clamp-5">{anime.synopsis || anime.description}</p>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
             <Button 
-              className="gap-2 w-full sm:w-auto"
+              className="gap-2 w-full sm:w-auto px-4 py-2 text-base sm:text-sm rounded-md"
               onClick={() => setShowTrailer(true)}
               disabled={!(anime.trailer?.embed_url || anime.trailer?.embedUrl)}
             >
               <Play className="h-4 w-4" />
               Ver Tráiler
             </Button>
-            <Button variant="outline" className="gap-2 w-full sm:w-auto" onClick={() => router.push(`/anime/${anime.mal_id || anime.id}`)} >
+            <Button variant="outline" className="gap-2 w-full sm:w-auto px-4 py-2 text-base sm:text-sm rounded-md" onClick={() => router.push(`/anime/${anime.mal_id || anime.id}`)} >
               <Info className="h-4 w-4" />
               Más Info
             </Button>

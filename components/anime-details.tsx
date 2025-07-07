@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Heart, Bookmark, Share2, Star, Calendar, Clock, Film, Users, ExternalLink, Loader2 } from "lucide-react"
+import { Heart, Bookmark, Share2, Star, Calendar, Clock, Film, Users, ExternalLink, Loader2, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
@@ -21,6 +21,7 @@ export default function AnimeDetails({ id }: AnimeDetailsProps) {
   const [error, setError] = useState("")
   const [isFavorite, setIsFavorite] = useState(false)
   const [isBookmarked, setIsBookmarked] = useState(false)
+  const [showTrailer, setShowTrailer] = useState(false)
 
   const backendUrl = API_URL
 
@@ -79,6 +80,30 @@ export default function AnimeDetails({ id }: AnimeDetailsProps) {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Modal para el tráiler */}
+      {showTrailer && (anime.trailer?.embed_url || anime.trailer?.embedUrl) && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+          <div className="relative w-full max-w-md lg:max-w-2xl p-2 sm:p-4">
+            <button
+              className="absolute top-2 right-2 text-white text-2xl"
+              onClick={() => setShowTrailer(false)}
+              aria-label="Cerrar"
+            >
+              ×
+            </button>
+            <div className="aspect-w-16 aspect-h-9 w-full">
+              <iframe
+                src={anime.trailer.embed_url || anime.trailer.embedUrl}
+                title={`${anime.title} trailer`}
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                className="w-full h-48 sm:h-64 lg:h-96 rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      )}
       {/* Breadcrumbs */}
       <div className="text-sm text-muted-foreground mb-4">
         <Link href="/" className="hover:text-foreground">
@@ -137,6 +162,14 @@ export default function AnimeDetails({ id }: AnimeDetailsProps) {
                 {isBookmarked ? "En lista" : "Añadir a lista"}
               </Button>
             </div>
+
+            {/* Botón Ver Trailer */}
+            {anime.trailer?.embed_url || anime.trailer?.embedUrl ? (
+              <Button className="w-full mb-6 gap-2" onClick={() => setShowTrailer(true)}>
+                <Play className="h-4 w-4" />
+                Ver Tráiler
+              </Button>
+            ) : null}
 
             <Button variant="outline" className="w-full mb-6">
               <Share2 className="h-4 w-4 mr-2" />
