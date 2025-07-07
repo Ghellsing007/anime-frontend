@@ -103,7 +103,7 @@ export const AnimeSearchAutocomplete: React.FC<AnimeSearchAutocompleteProps> = (
       {showSuggestions && (searchQuery || loading) && (
         <div className={cn(
           "absolute left-0 top-full mt-1 w-full bg-background border rounded shadow-lg z-50",
-          size === "small" ? "" : "max-w-xl"
+          size === "small" ? "z-50" : "max-w-xl z-50"
         )}>
           {loading ? (
             <div className="p-2 text-sm text-muted-foreground">Buscando...</div>
